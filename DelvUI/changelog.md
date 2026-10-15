@@ -1084,3 +1084,8 @@ Fixes:
 
 # 0.1.0.0
 - First public beta version.
+## DelvUI JP v2.8.0.1
+
+- DelvUI JP の公式リポジトリURLを修正しました。
+- Dalamudカスタムプラグインリポジトリからインストール・更新できる配布形式に対応しました。
+

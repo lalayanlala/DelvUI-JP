@@ -9,7 +9,7 @@
 
 	<!-- Assembly Configuration -->
 	<PropertyGroup>
-		<AssemblyName>DelvUI</AssemblyName>
+		<AssemblyName>DelvUIJP</AssemblyName>
 		<AssemblyVersion>2.8.0.0</AssemblyVersion>
 		<FileVersion>2.8.0.0</FileVersion>
 		<InformationalVersion>2.8.0.0</InformationalVersion>
@@ -56,7 +56,7 @@
 
 	<!-- Included Content -->
 	<ItemGroup>
-		<Content Include="$(ProjectDir)DelvUI.json" CopyToOutputDirectory="Always" />
+		<Content Include="$(ProjectDir)DelvUIJP.json" CopyToOutputDirectory="Always" />
 		<Content Include="$(ProjectDir)changelog.md" CopyToOutputDirectory="Always" />
 		<Content Include="$(ProjectDir)Media\**" CopyToOutputDirectory="PreserveNewest" />
 		<!-- <Content Include="$(ProjectDir)Media\Images\icon.png" Link="images/icon.png" CopyToOutputDirectory="PreserveNewest" Visible="false" /> -->

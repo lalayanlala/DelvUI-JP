@@ -215,7 +215,7 @@ namespace DelvUI.Config.Tree
 
                         foreach (SectionNode selectionNode in _nodes)
                         {
-                            if (ImGui.Selectable(selectionNode.Name, selectionNode.Selected))
+                            if (ImGui.Selectable(JapaneseLocalizer.Label(selectionNode.Name), selectionNode.Selected))
                             {
                                 selectionNode.Selected = true;
                                 SelectedOptionName = selectionNode.Name;
@@ -240,7 +240,7 @@ namespace DelvUI.Config.Tree
                         }
                         ImGui.PopStyleColor();
                         ImGui.PopFont();
-                        ImGuiHelper.SetTooltip("Changelog");
+                        ImGuiHelper.SetTooltip(JapaneseLocalizer.Translate("Changelog"));
 
                         // discord button
                         ImGui.PushFont(UiBuilder.IconFont);
@@ -302,7 +302,7 @@ namespace DelvUI.Config.Tree
             }
             ImGui.PopStyleColor();
             ImGui.PopFont();
-            ImGuiHelper.SetTooltip("Close");
+            ImGuiHelper.SetTooltip(JapaneseLocalizer.Translate("Close"));
 
             // unlock button
             ImGui.PushFont(UiBuilder.IconFont);
@@ -315,7 +315,7 @@ namespace DelvUI.Config.Tree
             }
             ImGui.PopStyleColor();
             ImGui.PopFont();
-            ImGuiHelper.SetTooltip("Unlock HUD");
+            ImGuiHelper.SetTooltip(JapaneseLocalizer.Translate(ConfigurationManager.Instance.LockHUD ? "Unlock HUD" : "Lock HUD"));
 
             // hide button
             ImGui.PushFont(UiBuilder.IconFont);
@@ -328,7 +328,7 @@ namespace DelvUI.Config.Tree
             }
             ImGui.PopStyleColor();
             ImGui.PopFont();
-            ImGuiHelper.SetTooltip(ConfigurationManager.Instance.ShowHUD ? "Hide HUD" : "Show HUD");
+            ImGuiHelper.SetTooltip(JapaneseLocalizer.Translate(ConfigurationManager.Instance.ShowHUD ? "Hide HUD" : "Show HUD"));
 
             PopStyles(popColors);
 

@@ -47,7 +47,7 @@ namespace DelvUI
         public static ISharedImmediateTexture? BannerTexture;
 
         public static string AssemblyLocation { get; private set; } = "";
-        public string Name => "DelvUI";
+        public string Name => "DelvUI JP";
 
         public static string Version { get; private set; } = "";
 
@@ -148,34 +148,27 @@ namespace DelvUI
             FontsManager.Instance.BuildFonts();
 
             CommandManager.AddHandler(
-                "/delvui",
+                "/delvuijp",
                 new CommandInfo(PluginCommand)
                 {
-                    HelpMessage = "Opens the DelvUI configuration window.\n"
-                                + "/delvui toggle → Toggles HUD visibility.\n"
-                                + "/delvui show → Shows HUD.\n"
-                                + "/delvui hide → Hides HUD.\n"
-                                + "/delvui toggledefaulthud → Toggles the game's Job Gauges visibility.\n"
-                                + "/delvui forcejob <JOB> → Forces DelvUI to show the hud for the given Job short name.\n"
-                                + "/delvui profile <PROFILE> → Switch to the given profile.\n"
-                                + "/delvui mouse <on/off> → Toggles special input handling to support extra mouse buttons when hovering DelvUI elements.",
+                    HelpMessage = "DelvUI JP の設定画面を開きます。\n"
+                                + "/delvuijp toggle → HUDの表示を切り替えます。\n"
+                                + "/delvuijp show → HUDを表示します。\n"
+                                + "/delvuijp hide → HUDを非表示にします。\n"
+                                + "/delvuijp toggledefaulthud → ゲーム標準のジョブHUD表示を切り替えます。\n"
+                                + "/delvuijp forcejob <JOB> → 指定したジョブのHUDを強制表示します。\n"
+                                + "/delvuijp profile <プロファイル名> → プロファイルを切り替えます。\n"
+                                + "/delvuijp mouse <on/off> → HUD上の追加マウスボタン対応を切り替えます。",
 
                     ShowInHelp = true
                 }
             ); ;
 
             CommandManager.AddHandler(
-                "/dui",
+                "/duijp",
                 new CommandInfo(PluginCommand)
                 {
-                    HelpMessage = "Opens the DelvUI configuration window.\n"
-                                + "/dui toggle → Toggles HUD visibility.\n"
-                                + "/dui show → Shows HUD.\n"
-                                + "/dui hide → Hides HUD."
-                                + "/dui toggledefaulthud → Toggles the game's Job Gauges visibility.\n"
-                                + "/dui forcejob <JOB> → Forces DelvUI to show the hud for the given Job short name.\n"
-                                + "/dui profile <PROFILE> → Switch to the given profile.\n"
-                                + "/dui mouse <on/off> → Toggles special input handling to support extra mouse buttons when hovering DelvUI elements.",
+                    HelpMessage = "/delvuijp と同じ短縮コマンドです。",
 
                     ShowInHelp = true
                 }
@@ -438,8 +431,8 @@ namespace DelvUI
             WhosTalkingHelper.Instance?.Dispose();
 
             Logger.Info("\tRemoving commands...");
-            CommandManager.RemoveHandler("/delvui");
-            CommandManager.RemoveHandler("/dui");
+            CommandManager.RemoveHandler("/delvuijp");
+            CommandManager.RemoveHandler("/duijp");
 
             Logger.Info("\tUnsubscribing from UIBuilder events...");
             UiBuilder.Draw -= Draw;

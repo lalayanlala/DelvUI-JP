@@ -1,0 +1,8 @@
+{
+  "Name": "DelvUI JP",
+  "Author": "Tischel / DelvUI JP contributors",
+  "Punchline": "日本語で使える、高度にカスタマイズ可能なHUD置き換えプラグイン。",
+  "Description": "DelvUIをベースに、設定画面・コマンド案内を日本語化した派生版です。プレイヤー・ターゲット・パーティ・ジョブHUDなどを自由に配置できます。",
+  "RepoUrl": "https://github.com/lalayanlala/DelvUI-JP",
+  "Tags": ["UI", "Japanese", "日本語"]
+}

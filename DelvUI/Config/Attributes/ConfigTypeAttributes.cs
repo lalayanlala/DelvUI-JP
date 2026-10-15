@@ -137,7 +137,10 @@ namespace DelvUI.Config.Attributes
             bool? fieldVal = (bool?)field.GetValue(config);
             bool boolVal = fieldVal.HasValue ? fieldVal.Value : false;
 
-            if (ImGui.Checkbox(ID != null && friendlyName == "Enabled" && !collapsingHeader ? ID : friendlyName + IDText(ID), ref boolVal))
+            string label = ID != null && friendlyName == "Enabled" && !collapsingHeader
+                ? JapaneseLocalizer.Translate(ID) + IDText(ID)
+                : JapaneseLocalizer.Translate(friendlyName) + IDText(ID);
+            if (ImGui.Checkbox(label, ref boolVal))
             {
                 field.SetValue(config, boolVal);
 
@@ -175,7 +178,7 @@ namespace DelvUI.Config.Attributes
 
             for (int i = 0; i < _options.Length; i++)
             {
-                changed |= ImGui.RadioButton(_options[i], ref intVal, i);
+                changed |= ImGui.RadioButton(JapaneseLocalizer.Label(_options[i]), ref intVal, i);
                 if (i < _options.Length - 1)
                 {
                     ImGui.SameLine();
@@ -211,7 +214,7 @@ namespace DelvUI.Config.Attributes
             float? fieldVal = (float?)field.GetValue(config);
             float floatVal = fieldVal.HasValue ? fieldVal.Value : 0;
 
-            if (ImGui.DragFloat(friendlyName + IDText(ID), ref floatVal, velocity, min, max))
+            if (ImGui.DragFloat(JapaneseLocalizer.Translate(friendlyName) + IDText(ID), ref floatVal, velocity, min, max))
             {
                 field.SetValue(config, floatVal);
 
@@ -243,7 +246,7 @@ namespace DelvUI.Config.Attributes
             int? fieldVal = (int?)field.GetValue(config);
             int intVal = fieldVal.HasValue ? fieldVal.Value : 0;
 
-            if (ImGui.DragInt(friendlyName + IDText(ID), ref intVal, velocity, min, max))
+            if (ImGui.DragInt(JapaneseLocalizer.Translate(friendlyName) + IDText(ID), ref intVal, velocity, min, max))
             {
                 field.SetValue(config, intVal);
 
@@ -275,7 +278,7 @@ namespace DelvUI.Config.Attributes
             Vector2? fieldVal = (Vector2?)field.GetValue(config);
             Vector2 vectorVal = fieldVal.HasValue ? fieldVal.Value : Vector2.Zero;
 
-            if (ImGui.DragFloat2(friendlyName + IDText(ID), ref vectorVal, velocity, min, max))
+            if (ImGui.DragFloat2(JapaneseLocalizer.Translate(friendlyName) + IDText(ID), ref vectorVal, velocity, min, max))
             {
                 field.SetValue(config, vectorVal);
 
@@ -307,7 +310,7 @@ namespace DelvUI.Config.Attributes
             Vector2? fieldVal = (Vector2?)field.GetValue(config);
             Vector2 vectorVal = fieldVal.HasValue ? fieldVal.Value : Vector2.Zero;
 
-            if (ImGui.DragFloat2(friendlyName + IDText(ID), ref vectorVal, velocity, min, max))
+            if (ImGui.DragFloat2(JapaneseLocalizer.Translate(friendlyName) + IDText(ID), ref vectorVal, velocity, min, max))
             {
                 field.SetValue(config, vectorVal);
 
@@ -344,7 +347,7 @@ namespace DelvUI.Config.Attributes
 
             if (!formattable)
             {
-                if (ImGui.InputText(friendlyName + IDText(ID), ref stringVal))
+                if (ImGui.InputText(JapaneseLocalizer.Translate(friendlyName) + IDText(ID), ref stringVal))
                 {
                     finalValue = stringVal;
                 }
@@ -356,7 +359,7 @@ namespace DelvUI.Config.Attributes
                 float height = Math.Max(24 * scale, ImGui.CalcTextSize(stringVal, false, width).Y + 6 * scale);
                 Vector2 size = new Vector2(width, height);
 
-                if (ImGui.InputTextMultiline(friendlyName + IDText(ID), ref stringVal, maxLength, size, ImGuiInputTextFlags.AllowTabInput))
+                if (ImGui.InputTextMultiline(JapaneseLocalizer.Translate(friendlyName) + IDText(ID), ref stringVal, maxLength, size, ImGuiInputTextFlags.AllowTabInput))
                 {
                     finalValue = stringVal;
                 }
@@ -401,7 +404,7 @@ namespace DelvUI.Config.Attributes
             PluginConfigColor? colorVal = (PluginConfigColor?)field.GetValue(config);
             Vector4 vector = (colorVal != null ? colorVal.Vector : Vector4.Zero);
 
-            if (ImGui.ColorEdit4(friendlyName + IDText(ID), ref vector, ImGuiColorEditFlags.AlphaPreview | ImGuiColorEditFlags.AlphaBar))
+            if (ImGui.ColorEdit4(JapaneseLocalizer.Translate(friendlyName) + IDText(ID), ref vector, ImGuiColorEditFlags.AlphaPreview | ImGuiColorEditFlags.AlphaBar))
             {
                 if (colorVal is null)
                 {
@@ -440,7 +443,8 @@ namespace DelvUI.Config.Attributes
                 intVal = (int)fieldVal;
             }
 
-            if (ImGui.Combo(friendlyName + IDText(ID), ref intVal, options, 4))
+            string[] localizedOptions = Array.ConvertAll(options, JapaneseLocalizer.Translate);
+            if (ImGui.Combo(JapaneseLocalizer.Translate(friendlyName) + IDText(ID), ref intVal, localizedOptions, 4))
             {
                 field.SetValue(config, intVal);
 
@@ -465,14 +469,14 @@ namespace DelvUI.Config.Attributes
 
         public override bool DrawField(FieldInfo field, PluginConfigObject config, string? ID, bool collapsingHeader)
         {
-            ImGui.Text(friendlyName);
+            ImGui.Text(JapaneseLocalizer.Translate(friendlyName));
             int[]? fieldVal = (int[]?)field.GetValue(config);
             int[] order = fieldVal ?? Array.Empty<int>();
 
             for (int i = 0; i < order.Length; i++)
             {
                 ImGui.SameLine();
-                ImGui.Button(names[order[i]], new Vector2(100, 25));
+                ImGui.Button(JapaneseLocalizer.Label(names[order[i]]), new Vector2(100, 25));
 
                 if (ImGui.IsItemActive())
                 {
@@ -537,7 +541,7 @@ namespace DelvUI.Config.Attributes
 
             var options = fontsConfig.Fonts.Values.Select(fontData => fontData.Name + "  " + fontData.Size.ToString()).ToArray();
 
-            if (ImGui.Combo(friendlyName + IDText(ID), ref index, options, 4))
+            if (ImGui.Combo(JapaneseLocalizer.Translate(friendlyName) + IDText(ID), ref index, options, 4))
             {
                 stringVal = fontsConfig.Fonts.Keys[index];
                 field.SetValue(config, stringVal);
@@ -574,7 +578,7 @@ namespace DelvUI.Config.Attributes
 
             string[] options = textures.ToArray();
 
-            if (ImGui.Combo(friendlyName + IDText(ID), ref index, options, 10))
+            if (ImGui.Combo(JapaneseLocalizer.Translate(friendlyName) + IDText(ID), ref index, options, 10))
             {
                 stringVal = options[index];
                 field.SetValue(config, stringVal);
@@ -625,7 +629,7 @@ namespace DelvUI.Config.Attributes
                 intVal = (int)fieldVal;
             }
 
-            if (ImGui.Combo(friendlyName + IDText(ID), ref intVal, options, 4))
+            if (ImGui.Combo(JapaneseLocalizer.Translate(friendlyName) + IDText(ID), ref intVal, Array.ConvertAll(options, JapaneseLocalizer.Translate), 4))
             {
                 field.SetValue(config, (StrataLevel?)intVal);
 

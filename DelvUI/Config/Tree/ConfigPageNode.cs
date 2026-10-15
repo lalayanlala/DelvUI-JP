@@ -211,7 +211,7 @@ namespace DelvUI.Config.Tree
             float width = ImGui.GetWindowContentRegionMax().X - ImGui.GetWindowContentRegionMin().X;
             ImGui.SetCursorPos(new Vector2(width / 2f - buttonWidth - 5, ImGui.GetCursorPosY()));
 
-            if (ImGui.Button("Export", new Vector2(120, 24)))
+            if (ImGui.Button(JapaneseLocalizer.Label("Export"), new Vector2(120, 24)))
             {
                 var exportString = ImportExportHelper.GenerateExportString(ConfigObject);
                 ImGui.SetClipboardText(exportString);
@@ -219,7 +219,7 @@ namespace DelvUI.Config.Tree
 
             ImGui.SameLine();
 
-            if (ImGui.Button("Reset", new Vector2(120, 24)))
+            if (ImGui.Button(JapaneseLocalizer.Label("Reset"), new Vector2(120, 24)))
             {
                 _nodeToReset = this;
                 _nodeToResetName = Utils.UserFriendlyConfigName(ConfigObject.GetType().Name);

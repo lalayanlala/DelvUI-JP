@@ -3,6 +3,7 @@ using Dalamud.Bindings.ImGui;
 using System.IO;
 using System.Numerics;
 using System.Reflection;
+using DelvUI.Helpers;
 
 namespace DelvUI.Config.Tree
 {
@@ -68,14 +69,14 @@ namespace DelvUI.Config.Tree
                         bool a = subSectionNode.Name == ForceSelectedTabName; // no idea how this works
                         ImGuiTabItemFlags flag = subSectionNode.Name == ForceSelectedTabName ? ImGuiTabItemFlags.SetSelected : ImGuiTabItemFlags.None;
 
-                        if (!ImGui.BeginTabItem(subSectionNode.Name, ref a, flag))
+                        if (!ImGui.BeginTabItem(JapaneseLocalizer.Label(subSectionNode.Name), ref a, flag))
                         {
                             continue;
                         }
                     }
                     else
                     {
-                        if (!ImGui.BeginTabItem(subSectionNode.Name))
+                        if (!ImGui.BeginTabItem(JapaneseLocalizer.Label(subSectionNode.Name)))
                         {
                             continue;
                         }

@@ -40,7 +40,9 @@ namespace DelvUI.Interface.GeneralElements
         [JsonIgnore] public string ValidatedFontsPath => ValidatePath(FontsPath);
 
         public SortedList<string, FontData> Fonts = new SortedList<string, FontData>();
-        public bool SupportChineseCharacters = false;
+        // ImGui's Chinese-full range also contains hiragana, katakana and the
+        // commonly used Japanese ideographs required by the JP interface.
+        public bool SupportChineseCharacters = true;
         public bool SupportKoreanCharacters = false;
         public bool SupportCyrillicCharacters = false;
         [JsonIgnore] public readonly Dictionary<string, string> GameFontMap = new Dictionary<string, string>()
